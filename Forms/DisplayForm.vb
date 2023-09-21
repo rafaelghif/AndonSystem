@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Globalization
 Imports System.IO
 
 Public Class DisplayForm
@@ -18,8 +19,8 @@ Public Class DisplayForm
         Dim currentDate As Date = Date.Now
         Dim oneMonthAgo As Date = currentDate.AddMonths(-1)
 
-        Dim logFileName As String = $"{currentDate:MMM-yy}.txt"
-        Dim oneMonthAgoLogFileName As String = $"{oneMonthAgo:MMM-yy}.txt"
+        Dim logFileName As String = $"{currentDate.ToString("MMM-yy", CultureInfo.InvariantCulture)}.txt"
+        Dim oneMonthAgoLogFileName As String = $"{oneMonthAgo.ToString("MMM-yy", CultureInfo.InvariantCulture)}.txt"
 
         Dim logFilePath As String = Path.Combine(andonLogPath, logFileName)
         Dim oneMonthAgoFilePath As String = Path.Combine(andonLogPath, oneMonthAgoLogFileName)

@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Globalization
+Imports System.IO
 
 Public Class ArriveForm
     Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
@@ -54,8 +55,8 @@ Public Class ArriveForm
         Dim currentDate As Date = Date.Now
         Dim oneMonthAgo As Date = currentDate.AddMonths(-1)
 
-        Dim logFileName As String = $"{currentDate:MMM-yy}.txt"
-        Dim oneMonthAgoLogFileName As String = $"{oneMonthAgo:MMM-yy}.txt"
+        Dim logFileName As String = $"{currentDate.ToString("MMM-yy", CultureInfo.InvariantCulture)}.txt"
+        Dim oneMonthAgoLogFileName As String = $"{oneMonthAgo.ToString("MMM-yy", CultureInfo.InvariantCulture)}.txt"
 
         Dim logFilePath As String = Path.Combine(andonLogPath, logFileName)
         Dim oneMonthAgoFilePath As String = Path.Combine(andonLogPath, oneMonthAgoLogFileName)
@@ -138,7 +139,7 @@ Public Class ArriveForm
         Dim currentDate As Date = Date.Now
         Dim oneMonthAgo As Date = currentDate.AddMonths(-1)
 
-        Dim logFileNames As String() = {$"{oneMonthAgo:MMM-yy}.txt", $"{currentDate:MMM-yy}.txt"}
+        Dim logFileNames As String() = {$"{oneMonthAgo.ToString("MMM-yy", CultureInfo.InvariantCulture)}.txt", $"{currentDate.ToString("MMM-yy", CultureInfo.InvariantCulture)}.txt"}
         Dim alarmPaths As String() = logFileNames.Select(Function(logFileName) Path.Combine(alarmPath, logFileName)).ToArray()
         Dim andonLogPaths As String() = logFileNames.Select(Function(logFileName) Path.Combine(andonLogPath, logFileName)).ToArray()
 
