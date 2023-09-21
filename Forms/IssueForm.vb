@@ -1,7 +1,8 @@
 ﻿Public Class IssueForm
     Private andonAlarm As New Andon()
-    Private ReadOnly checkerReg = GetIniValue("SETUP", "checkerReg", $"{CurrentDirectory}/CONFIG/setup.ini")
-    Private ReadOnly checkerName = GetIniValue("SETUP", "checkerName", $"{CurrentDirectory}/CONFIG/setup.ini")
+    Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
+    Private ReadOnly checkerReg = GetIniValue("SETUP", "checkerReg", localPath)
+    Private ReadOnly checkerName = GetIniValue("SETUP", "checkerName", localPath)
     Private Sub IssueForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Initialization()
     End Sub

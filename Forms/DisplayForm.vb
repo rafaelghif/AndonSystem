@@ -2,7 +2,8 @@
 Imports System.IO
 
 Public Class DisplayForm
-    Private ReadOnly andonLogPath = GetIniValue("SETUP", "andonLogPath", $"{CurrentDirectory}/CONFIG/setup.ini")
+    Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
+    Private ReadOnly andonLogPath = GetIniValue("SETUP", "andonLogPath", localPath)
     Private listDatabases As New List(Of String)
 
     Private Sub DisplayForm_Load(sender As Object, e As EventArgs) Handles Me.Load

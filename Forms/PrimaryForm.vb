@@ -1,7 +1,8 @@
 ﻿Imports System.IO
 
 Public Class PrimaryForm
-    Private ReadOnly isManual As Boolean = GetIniValue("SETUP", "isManual", $"{CurrentDirectory}/CONFIG/setup.ini")
+    Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
+    Private ReadOnly isManual As Boolean = GetIniValue("SETUP", "isManual", localPath)
     Private logPath As String
     Private logType As String
     Private logFileType As String
@@ -13,9 +14,9 @@ Public Class PrimaryForm
     Private Sub Initialization()
         If isManual = False Then
             'Initialization Automatically Andon
-            logPath = GetIniValue("SETUP", "logPath", $"{CurrentDirectory}/CONFIG/setup.ini")
-            logType = GetIniValue("SETUP", "logType", $"{CurrentDirectory}/CONFIG/setup.ini")
-            logFileType = GetIniValue("SETUP", "logFileType", $"{CurrentDirectory}/CONFIG/setup.ini")
+            logPath = GetIniValue("SETUP", "logPath", localPath)
+            logType = GetIniValue("SETUP", "logType", localPath)
+            logFileType = GetIniValue("SETUP", "logFileType", localPath)
 
             logCount = Directory.GetFiles(logPath, $"*.{logFileType}", SearchOption.AllDirectories).Count
 

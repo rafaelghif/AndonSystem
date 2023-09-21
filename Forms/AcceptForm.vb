@@ -1,8 +1,9 @@
 ﻿Imports System.IO
 
 Public Class AcceptForm
-    Private ReadOnly alarmPath = GetIniValue("SETUP", "alarmPath", $"{CurrentDirectory}/CONFIG/setup.ini")
-    Private ReadOnly andonLogPath = GetIniValue("SETUP", "andonLogPath", $"{CurrentDirectory}/CONFIG/setup.ini")
+    Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
+    Private ReadOnly alarmPath = GetIniValue("SETUP", "alarmPath", localPath)
+    Private ReadOnly andonLogPath = GetIniValue("SETUP", "andonLogPath", localPath)
 
     Private andon As New Andon()
     Private listDatabases As New List(Of String)

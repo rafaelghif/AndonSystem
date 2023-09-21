@@ -1,12 +1,14 @@
-﻿Imports System.IO
+﻿Imports System.Globalization
+Imports System.IO
 
 Public Class Andon
-    Private ReadOnly alarmPath = GetIniValue("SETUP", "alarmPath", $"{CurrentDirectory}/CONFIG/setup.ini")
-    Private ReadOnly andonLogPath = GetIniValue("SETUP", "andonLogPath", $"{CurrentDirectory}/CONFIG/setup.ini")
-    Private ReadOnly checkerReg = GetIniValue("SETUP", "checkerReg", $"{CurrentDirectory}/CONFIG/setup.ini")
-    Private ReadOnly checkerName = GetIniValue("SETUP", "checkerName", $"{CurrentDirectory}/CONFIG/setup.ini")
-    Private ReadOnly line = GetIniValue("SETUP", "line", $"{CurrentDirectory}/CONFIG/setup.ini")
-    Private ReadOnly department = GetIniValue("SETUP", "department", $"{CurrentDirectory}/CONFIG/setup.ini")
+    Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
+    Private ReadOnly alarmPath = GetIniValue("SETUP", "alarmPath", localPath)
+    Private ReadOnly andonLogPath = GetIniValue("SETUP", "andonLogPath", localPath)
+    Private ReadOnly checkerReg = GetIniValue("SETUP", "checkerReg", localPath)
+    Private ReadOnly checkerName = GetIniValue("SETUP", "checkerName", localPath)
+    Private ReadOnly line = GetIniValue("SETUP", "line", localPath)
+    Private ReadOnly department = GetIniValue("SETUP", "department", localPath)
 
     Private ReadOnly alarmLock As New Object()
     Private ReadOnly logLock As New Object()
@@ -25,11 +27,11 @@ Public Class Andon
         EnsureDirectoryExists(alarmPath)
         EnsureDirectoryExists(andonLogPath)
 
-        Dim logFileName As String = $"{currentDate:MMM-yy}.txt"
-        Dim andonIdFormat As String = $"{currentDate:MMM-yy}-{{0}}"
+        Dim logFileName As String = $"{currentDate.ToString("MMM-yy", CultureInfo.InvariantCulture)}.txt"
+        Dim andonIdFormat As String = $"{currentDate.ToString("MMM-yy", CultureInfo.InvariantCulture)}-{{0}}"
         Dim newAndonId As String
 
-        Dim fileContents As String() = If(File.Exists(Path.Combine(andonLogPath, logFileName)), File.ReadAllLines(Path.Combine(alarmPath, logFileName)), Nothing)
+        Dim fileContents As String() = If(File.Exists(Path.Combine(andonLogPath, logFileName)), File.ReadAllLines(Path.Combine(andonLogPath, logFileName)), Nothing)
 
         SyncLock logLock
             Using andonLogWriter As StreamWriter = File.AppendText(Path.Combine(andonLogPath, logFileName))

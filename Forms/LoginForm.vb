@@ -1,7 +1,8 @@
 ﻿Imports System.IO
 
 Public Class LoginForm
-    Private ReadOnly userPath As String = GetIniValue("SETUP", "userPath", $"{CurrentDirectory}/CONFIG/setup.ini")
+    Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
+    Private ReadOnly userPath As String = GetIniValue("SETUP", "userPath", localPath)
 
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Initialization()
