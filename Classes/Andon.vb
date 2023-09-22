@@ -22,6 +22,8 @@ Public Class Andon
     Public Sub GenerateAndonAlarm(failName As String, Optional andonType As String = "Engineering")
         Dim currentDate As Date = Date.Now
 
+        failName = failName.Replace(vbCrLf, "")
+
         Dim computerName As String = Environment.MachineName
 
         EnsureDirectoryExists(alarmPath)
