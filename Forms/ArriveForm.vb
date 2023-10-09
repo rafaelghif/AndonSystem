@@ -149,9 +149,15 @@ Public Class ArriveForm
             Dim andonLogPath As String = andonLogPaths(i)
 
             Dim alarmContents As String() = LoadData(alarmPath)
-            andon.ReWriteAlarmContent(alarmPath, alarmContents, andonId)
-
             Dim andonLogContents As String() = LoadData(andonLogPath)
+
+            If andon.CompareMacAddress(andonId, andonLogContents) = False Then
+                MsgBox("Please arrive in the correct checker!", MsgBoxStyle.Information)
+                Initialization()
+                Exit Sub
+            End If
+
+            andon.ReWriteAlarmContent(alarmPath, alarmContents, andonId)
             andon.ReWriteLogContent(andonLogPath, andonLogContents, andonId, LblUsername.Text, "ARRIVE")
         Next
 

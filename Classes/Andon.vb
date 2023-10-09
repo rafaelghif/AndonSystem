@@ -1,5 +1,6 @@
 ﻿Imports System.Globalization
 Imports System.IO
+Imports System.Net.NetworkInformation
 
 Public Class Andon
     Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
@@ -33,6 +34,8 @@ Public Class Andon
         Dim andonIdFormat As String = $"{currentDate.ToString("MMM-yy", CultureInfo.InvariantCulture)}-{{0}}"
         Dim newAndonId As String
 
+        Dim macAddress As String = GetMacAddress()
+
         Dim fileContents As String() = If(File.Exists(Path.Combine(andonLogPath, logFileName)), File.ReadAllLines(Path.Combine(andonLogPath, logFileName)), Nothing)
 
         SyncLock logLock
@@ -45,19 +48,17 @@ Public Class Andon
                     newAndonId = String.Format(andonIdFormat, nextSequenceId)
                 End If
 
-                Dim andonLogMessage As String = $"{newAndonId},{department},{computerName},{line},{checkerReg},{checkerName},{failName},{andonType},ISSUE,Category,Action,{currentDate:yyyy-MM-dd HH:mm:ss},AcceptDateTime,acceptBy,ArriveDateTime,arriveBy,CloseDateTime,closeBy"
+                Dim andonLogMessage As String = $"{newAndonId},{department},{computerName},{line},{checkerReg},{checkerName},{failName},{andonType},ISSUE,Category,Action,{currentDate.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)},AcceptDateTime,acceptBy,ArriveDateTime,arriveBy,CloseDateTime,closeBy,{macAddress}"
                 andonLogWriter.WriteLine(andonLogMessage)
             End Using
         End SyncLock
 
         SyncLock alarmLock
             Using alarmWriter As StreamWriter = File.AppendText(Path.Combine(alarmPath, logFileName))
-                Dim alarmMessage As String = $"{newAndonId},{line}, {checkerReg} - {checkerName},{currentDate:HH:mm:ss},ENG"
+                Dim alarmMessage As String = $"{newAndonId},{line}, {checkerReg} - {checkerName},{currentDate.ToString("HH:mm:ss", CultureInfo.InvariantCulture)},ENG"
                 alarmWriter.WriteLine(alarmMessage)
             End Using
         End SyncLock
-
-
     End Sub
 
     Public Sub ReWriteAlarmContent(alarmPath As String, alarmContents As String(), andonId As String)
@@ -77,6 +78,26 @@ Public Class Andon
             End SyncLock
         End If
     End Sub
+
+    Public Function CompareMacAddress(andonId As String, andonLogContents As String()) As Boolean
+        Dim currentMac As String = GetMacAddress()
+
+        Dim isValid = True
+
+        If andonLogContents?.Length > 0 Then
+            For Each andonLogContent In andonLogContents
+                Dim anDonData As String() = andonLogContent.Split(",")
+                If andonId = anDonData(0) Then
+                    If anDonData.Length = 19 Then
+                        isValid = currentMac = anDonData(18)
+                        Exit For
+                    End If
+                End If
+            Next
+        End If
+
+        Return isValid
+    End Function
 
     Public Sub ReWriteAlarmContentAndRemoveId(alarmPath As String, alarmContents As String(), andonId As String)
         If alarmContents IsNot Nothing Then
@@ -126,4 +147,24 @@ Public Class Andon
             End SyncLock
         End If
     End Sub
+
+    Private Function GetMacAddress() As String
+        Dim macAddress As String = String.Empty
+
+        Dim networkInterfaces() As NetworkInterface = NetworkInterface.GetAllNetworkInterfaces()
+
+        For Each networkInterface As NetworkInterface In networkInterfaces
+            ' Check if the network interface is operational and not a loopback or tunnel interface
+            If networkInterface.OperationalStatus = OperationalStatus.Up AndAlso
+               networkInterface.NetworkInterfaceType <> NetworkInterfaceType.Loopback AndAlso
+               networkInterface.NetworkInterfaceType <> NetworkInterfaceType.Tunnel Then
+
+                Dim physicalAddress As PhysicalAddress = networkInterface.GetPhysicalAddress()
+                macAddress = BitConverter.ToString(physicalAddress.GetAddressBytes())
+                Exit For
+            End If
+        Next
+
+        Return macAddress
+    End Function
 End Class

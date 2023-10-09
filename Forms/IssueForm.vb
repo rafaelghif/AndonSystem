@@ -32,6 +32,10 @@
     End Sub
 
     Private Sub GenerateAndonAlarm(type As String)
+        If TxtProblem.Text = "" Then
+            MsgBox("Please fill problem", MsgBoxStyle.Information)
+            Exit Sub
+        End If
         andonAlarm.GenerateAndonAlarm(TxtProblem.Text, type)
         MsgBox($"Success Issue {type} Support", MsgBoxStyle.Information)
         Initialization()
