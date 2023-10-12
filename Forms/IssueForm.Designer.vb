@@ -100,7 +100,7 @@ Partial Class IssueForm
         Me.BtnEngSupport.Font = New System.Drawing.Font("Source Sans Pro", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnEngSupport.Location = New System.Drawing.Point(132, 268)
         Me.BtnEngSupport.Name = "BtnEngSupport"
-        Me.BtnEngSupport.Size = New System.Drawing.Size(153, 35)
+        Me.BtnEngSupport.Size = New System.Drawing.Size(153, 73)
         Me.BtnEngSupport.TabIndex = 2
         Me.BtnEngSupport.Text = "Engineering Support"
         Me.BtnEngSupport.UseVisualStyleBackColor = True
@@ -130,7 +130,7 @@ Partial Class IssueForm
         Me.BtnClose.Font = New System.Drawing.Font("Source Sans Pro", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.Location = New System.Drawing.Point(12, 227)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(111, 75)
+        Me.BtnClose.Size = New System.Drawing.Size(111, 113)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.Text = "END"
         Me.BtnClose.UseVisualStyleBackColor = True
@@ -139,7 +139,7 @@ Partial Class IssueForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(297, 314)
+        Me.ClientSize = New System.Drawing.Size(297, 352)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.BtnProductionSupport)
         Me.Controls.Add(Me.TxtProblem)

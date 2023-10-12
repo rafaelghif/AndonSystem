@@ -35,6 +35,7 @@ Partial Class DisplayForm
         Me.Label7 = New System.Windows.Forms.Label()
         Me.RefreshAndonTimer = New System.Windows.Forms.Timer(Me.components)
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'BtnExit
@@ -96,7 +97,7 @@ Partial Class DisplayForm
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Source Sans Pro", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(163, 122)
+        Me.Label4.Location = New System.Drawing.Point(161, 122)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(118, 20)
         Me.Label4.TabIndex = 5
@@ -107,7 +108,7 @@ Partial Class DisplayForm
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Source Sans Pro", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.White
-        Me.Label6.Location = New System.Drawing.Point(351, 122)
+        Me.Label6.Location = New System.Drawing.Point(368, 122)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(74, 20)
         Me.Label6.TabIndex = 8
@@ -118,18 +119,18 @@ Partial Class DisplayForm
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Source Sans Pro", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(517, 122)
+        Me.Label5.Location = New System.Drawing.Point(555, 122)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(88, 20)
+        Me.Label5.Size = New System.Drawing.Size(49, 20)
         Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Issue Date"
+        Me.Label5.Text = "Issue"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Source Sans Pro", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(698, 122)
+        Me.Label7.Location = New System.Drawing.Point(736, 122)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(32, 20)
         Me.Label7.TabIndex = 10
@@ -143,11 +144,22 @@ Partial Class DisplayForm
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Source Sans Pro", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(818, 122)
+        Me.Label8.Location = New System.Drawing.Point(811, 122)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(45, 20)
         Me.Label8.TabIndex = 11
         Me.Label8.Text = "Type"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Source Sans Pro", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.White
+        Me.Label9.Location = New System.Drawing.Point(640, 122)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(58, 20)
+        Me.Label9.TabIndex = 12
+        Me.Label9.Text = "Status"
         '
         'DisplayForm
         '
@@ -155,6 +167,7 @@ Partial Class DisplayForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DimGray
         Me.ClientSize = New System.Drawing.Size(912, 600)
+        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label5)
@@ -188,4 +201,5 @@ Partial Class DisplayForm
     Friend WithEvents Label7 As Label
     Friend WithEvents RefreshAndonTimer As Timer
     Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
 End Class

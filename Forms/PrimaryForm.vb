@@ -78,4 +78,8 @@ Public Class PrimaryForm
     Private Sub BtnDisplay_Click(sender As Object, e As EventArgs) Handles BtnDisplay.Click
         DisplayForm.Show()
     End Sub
+
+    Private Sub BtnMonitor_Click(sender As Object, e As EventArgs) Handles BtnMonitor.Click
+        DisplayMonitorForm.Show()
+    End Sub
 End Class

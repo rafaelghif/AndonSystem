@@ -30,6 +30,7 @@ Partial Class PrimaryForm
         Me.BtnArrive = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnDisplay = New System.Windows.Forms.Button()
+        Me.BtnMonitor = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'WatchLogTimer
@@ -85,11 +86,22 @@ Partial Class PrimaryForm
         Me.BtnDisplay.Text = "Andon Display"
         Me.BtnDisplay.UseVisualStyleBackColor = True
         '
+        'BtnMonitor
+        '
+        Me.BtnMonitor.Font = New System.Drawing.Font("Source Sans Pro", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnMonitor.Location = New System.Drawing.Point(12, 242)
+        Me.BtnMonitor.Name = "BtnMonitor"
+        Me.BtnMonitor.Size = New System.Drawing.Size(237, 40)
+        Me.BtnMonitor.TabIndex = 5
+        Me.BtnMonitor.Text = "Monitor"
+        Me.BtnMonitor.UseVisualStyleBackColor = True
+        '
         'PrimaryForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(263, 245)
+        Me.ClientSize = New System.Drawing.Size(263, 294)
+        Me.Controls.Add(Me.BtnMonitor)
         Me.Controls.Add(Me.BtnDisplay)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.BtnArrive)
@@ -110,4 +122,5 @@ Partial Class PrimaryForm
     Friend WithEvents BtnArrive As Button
     Friend WithEvents BtnClose As Button
     Friend WithEvents BtnDisplay As Button
+    Friend WithEvents BtnMonitor As Button
 End Class

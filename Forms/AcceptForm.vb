@@ -148,7 +148,7 @@ Public Class AcceptForm
             Dim andonLogPath As String = andonLogPaths(i)
 
             Dim alarmContents As String() = LoadData(alarmPath)
-            andon.ReWriteAlarmContent(alarmPath, alarmContents, andonId)
+            andon.ReWriteAlarmContent(alarmPath, alarmContents, andonId, True)
 
             Dim andonLogContents As String() = LoadData(andonLogPath)
             andon.ReWriteLogContent(andonLogPath, andonLogContents, andonId, LblUsername.Text, "ACCEPT")

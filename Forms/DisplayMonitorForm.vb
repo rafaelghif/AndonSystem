@@ -2,20 +2,66 @@
 Imports System.Globalization
 Imports System.IO
 
-Public Class DisplayForm
+Public Class DisplayMonitorForm
+
     Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
     Private ReadOnly andonLogPath = GetIniValue("SETUP", "andonLogPath", localPath)
     Private listDatabases As New List(Of String)
 
-    Private Sub DisplayForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub DisplayForm2_Load(sender As Object, e As EventArgs) Handles Me.Load
         Initialization()
-        BackColor = ColorTranslator.FromHtml("#1f1f2b")
 
         RefreshAndonTimer.Interval = 5000
         RefreshAndonTimer.Start()
     End Sub
 
+    Private Sub InitializationComponentPosition()
+        BackColor = ColorTranslator.FromHtml("#1f1f2b")
+
+        LblTitle.AutoSize = True
+        LblTitle.Left = (Width - LblTitle.Width) / 2
+        LblTitle.Top = 25
+
+        LblSubTitle.AutoSize = True
+        LblSubTitle.Left = (Width - LblSubTitle.Width) / 2
+        LblSubTitle.Top = 55
+
+        BtnExit.Left = Width - 100
+        BtnExit.Top = 32
+
+        LblLine.AutoSize = True
+        LblLine.Left = 0.08 * Width
+        LblLine.Top = 95
+
+        LblCheckerName.AutoSize = True
+        LblCheckerName.Left = 0.218 * Width
+        LblCheckerName.Top = 95
+
+        LblProblem.AutoSize = True
+        LblProblem.Left = 0.45 * Width
+        LblProblem.Top = 95
+
+        LblIssueDate.AutoSize = True
+        LblIssueDate.Left = 0.68 * Width
+        LblIssueDate.Top = 95
+
+        LblStatus.AutoSize = True
+        LblStatus.Left = 0.78 * Width
+        LblStatus.Top = 95
+
+        LblPic.AutoSize = True
+        LblPic.Left = 0.875 * Width
+        LblPic.Top = 95
+
+        LblType.AutoSize = True
+        LblType.Left = 0.94 * Width
+        LblType.Top = 95
+    End Sub
+
     Private Sub Initialization()
+
+        InitializationComponentPosition()
+
         Dim currentDate As Date = Date.Now
         Dim oneMonthAgo As Date = currentDate.AddMonths(-1)
 
@@ -36,53 +82,19 @@ Public Class DisplayForm
         GenerateAndonList()
     End Sub
 
-    Private Function LoadData(filePath As String) As String()
-        If File.Exists(filePath) Then
-            Return File.ReadAllLines(filePath)
-        Else
-            Return Nothing
-        End If
-    End Function
-
-    Private Function CombineLogData(data1 As String(), data2 As String()) As String()
-        If data1 IsNot Nothing AndAlso data2 IsNot Nothing Then
-            Return data1.Concat(data2).ToArray()
-        ElseIf data1 IsNot Nothing Then
-            Return data1
-        ElseIf data2 IsNot Nothing Then
-            Return data2
-        Else
-            Return Nothing
-        End If
-    End Function
-
-    Private Function GetAndonList(databases As String()) As List(Of String)
-        Dim andonLists As New List(Of String)
-
-        If databases IsNot Nothing Then
-            For Each andonList As String In databases
-                If Not andonList.Contains("COMPLETE") Then
-                    andonLists.Add(andonList)
-                End If
-            Next
-        End If
-
-        Return andonLists
-    End Function
-
     Private Sub GenerateAndonList()
 
         Dim positionY As Integer = 15
 
         Dim textboxProperties = New List(Of TextboxProperties) From
         {
-            New TextboxProperties() With {.NamePrefix = "lineTextBox", .PositionX = 0, .SizeWidth = 142, .TextAlign = HorizontalAlignment.Left},
-            New TextboxProperties() With {.NamePrefix = "checkerNameTextBox", .PositionX = 142, .SizeWidth = 126, .TextAlign = HorizontalAlignment.Left},
-            New TextboxProperties() With {.NamePrefix = "problemTextBox", .PositionX = 268, .SizeWidth = 250, .TextAlign = HorizontalAlignment.Left},
-            New TextboxProperties() With {.NamePrefix = "issueDateTextBox", .PositionX = 518, .SizeWidth = 100, .TextAlign = HorizontalAlignment.Center},
-            New TextboxProperties() With {.NamePrefix = "status", .PositionX = 618, .SizeWidth = 80, .TextAlign = HorizontalAlignment.Center},
-            New TextboxProperties() With {.NamePrefix = "picTextBox", .PositionX = 698, .SizeWidth = 80, .TextAlign = HorizontalAlignment.Center},
-            New TextboxProperties() With {.NamePrefix = "supportTypeTextBox", .PositionX = 778, .SizeWidth = 90, .TextAlign = HorizontalAlignment.Center}
+            New TextboxProperties() With {.NamePrefix = "lineTextBox", .PositionX = 0, .SizeWidth = 0.16 * Width, .TextAlign = HorizontalAlignment.Left},
+            New TextboxProperties() With {.NamePrefix = "checkerNameTextBox", .PositionX = 0.16 * Width, .SizeWidth = 0.16 * Width, .TextAlign = HorizontalAlignment.Left},
+            New TextboxProperties() With {.NamePrefix = "problemTextBox", .PositionX = 0.32 * Width, .SizeWidth = 0.32 * Width, .TextAlign = HorizontalAlignment.Left},
+            New TextboxProperties() With {.NamePrefix = "issueDateTextBox", .PositionX = 0.64 * Width, .SizeWidth = 0.1 * Width, .TextAlign = HorizontalAlignment.Center},
+            New TextboxProperties() With {.NamePrefix = "statusTextBox", .PositionX = 0.74 * Width, .SizeWidth = 0.1 * Width, .TextAlign = HorizontalAlignment.Center},
+            New TextboxProperties() With {.NamePrefix = "picTextBox", .PositionX = 0.84 * Width, .SizeWidth = 0.07 * Width, .TextAlign = HorizontalAlignment.Center},
+            New TextboxProperties() With {.NamePrefix = "supportTypeTextBox", .PositionX = 0.91 * Width, .SizeWidth = 0.07 * Width, .TextAlign = HorizontalAlignment.Center}
         }
 
         Panel1.Controls.Clear()
@@ -125,10 +137,44 @@ Public Class DisplayForm
                 propIndex += 1
             Next
 
-            positionY += 31
+            positionY += 60
             currentIndex += 1
         Next
     End Sub
+
+    Private Function LoadData(filePath As String) As String()
+        If File.Exists(filePath) Then
+            Return File.ReadAllLines(filePath)
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Private Function CombineLogData(data1 As String(), data2 As String()) As String()
+        If data1 IsNot Nothing AndAlso data2 IsNot Nothing Then
+            Return data1.Concat(data2).ToArray()
+        ElseIf data1 IsNot Nothing Then
+            Return data1
+        ElseIf data2 IsNot Nothing Then
+            Return data2
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Private Function GetAndonList(databases As String()) As List(Of String)
+        Dim andonLists As New List(Of String)
+
+        If databases IsNot Nothing Then
+            For Each andonList As String In databases
+                If Not andonList.Contains("COMPLETE") Then
+                    andonLists.Add(andonList)
+                End If
+            Next
+        End If
+
+        Return andonLists
+    End Function
 
     Private Function CreateTextBox(indexNumber As Integer, value As String, positionX As Integer, positionY As Integer, width As Integer, Optional textAlign As HorizontalAlignment = HorizontalAlignment.Left) As TextBox
         Dim ticketType As String = value
@@ -139,13 +185,19 @@ Public Class DisplayForm
             ticketType = "PROD"
         End If
 
+        Dim fontSize As Integer = 20
+
+        If My.Computer.Screen.Bounds.Width = 1920 Then
+            fontSize = 30
+        End If
+
         Dim textBox As New TextBox With {
            .Name = $"picTextBox{indexNumber}",
            .Text = ticketType,
            .Location = New Point(positionX, positionY),
            .[ReadOnly] = True,
            .BorderStyle = BorderStyle.FixedSingle,
-           .Font = New Font("Source Sans Pro", 13.8),
+           .Font = New Font("Source Sans Pro", fontSize),
            .Size = New Size(width, 29),
            .TextAlign = textAlign,
            .BackColor = ColorTranslator.FromHtml("#1f1f2b"),
@@ -157,7 +209,6 @@ Public Class DisplayForm
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
         Close()
     End Sub
-
     Private Sub RefreshAndonTimer_Tick(sender As Object, e As EventArgs) Handles RefreshAndonTimer.Tick
         Initialization()
     End Sub
@@ -165,5 +216,5 @@ Public Class DisplayForm
     Private Sub DisplayForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         RefreshAndonTimer.Stop()
     End Sub
-End Class
 
+End Class

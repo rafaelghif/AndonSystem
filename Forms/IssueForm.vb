@@ -28,7 +28,9 @@
     End Sub
 
     Private Sub BtnProductionSupport_Click(sender As Object, e As EventArgs) Handles BtnProductionSupport.Click
-        GenerateAndonAlarm("Production")
+        If MsgBox("Apakah kamu yakin ingin memanggil leader ?", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok Then
+            GenerateAndonAlarm("Production")
+        End If
     End Sub
 
     Private Sub GenerateAndonAlarm(type As String)
@@ -36,7 +38,11 @@
             MsgBox("Please fill problem", MsgBoxStyle.Information)
             Exit Sub
         End If
-        andonAlarm.GenerateAndonAlarm(TxtProblem.Text, type)
+
+        Dim problem As String = TxtProblem.Text.Replace(vbCrLf, ". ").Replace(",", ".").Replace(vbCr, ". ").Replace("\r\n", ". ").Replace(Environment.NewLine, ". ")
+
+        andonAlarm.GenerateAndonAlarm(problem, type)
+
         MsgBox($"Success Issue {type} Support", MsgBoxStyle.Information)
         Initialization()
     End Sub

@@ -161,7 +161,7 @@ Public Class ArriveForm
             andon.ReWriteLogContent(andonLogPath, andonLogContents, andonId, LblUsername.Text, "ARRIVE")
         Next
 
-        MsgBox($"Success Accept Andon {andonId}", MsgBoxStyle.Information)
+        MsgBox($"Success Arrive Andon {andonId}", MsgBoxStyle.Information)
         Initialization()
     End Sub
 End Class

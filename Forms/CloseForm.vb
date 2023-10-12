@@ -148,7 +148,7 @@ Public Class CloseForm
         Dim andonLogPaths As String() = logFileNames.Select(Function(logFileName) Path.Combine(andonLogPath, logFileName)).ToArray()
 
         Dim category As String = CmbCategory.SelectedItem
-        Dim picAction As String = txtAction.Text.Replace(vbCrLf, "")
+        Dim picAction As String = txtAction.Text.Replace(vbCrLf, ". ").Replace(",", ".").Replace(vbCr, ". ").Replace("\r\n", ". ").Replace(Environment.NewLine, ". ")
 
         If String.IsNullOrEmpty(category) Then
             MsgBox("Please select category", MsgBoxStyle.Critical)
@@ -174,7 +174,7 @@ Public Class CloseForm
             andon.ReWriteLogContent(andonLogPath, andonLogContents, andonId, LblUsername.Text, "COMPLETE", category, picAction)
         Next
 
-        MsgBox($"Success Accept Andon {andonId}", MsgBoxStyle.Information)
+        MsgBox($"Success Close Andon {andonId}", MsgBoxStyle.Information)
         Initialization()
     End Sub
 End Class

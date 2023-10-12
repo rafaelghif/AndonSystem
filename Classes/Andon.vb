@@ -23,7 +23,13 @@ Public Class Andon
     Public Sub GenerateAndonAlarm(failName As String, Optional andonType As String = "Engineering")
         Dim currentDate As Date = Date.Now
 
-        failName = failName.Replace(vbCrLf, "")
+        Dim alarmType As String = "ENG"
+
+        If andonType = "Production" Then
+            alarmType = "PROD"
+        End If
+
+        failName = failName.Replace(vbCrLf, "").Replace(vbCr, "")
 
         Dim computerName As String = Environment.MachineName
 
@@ -55,13 +61,13 @@ Public Class Andon
 
         SyncLock alarmLock
             Using alarmWriter As StreamWriter = File.AppendText(Path.Combine(alarmPath, logFileName))
-                Dim alarmMessage As String = $"{newAndonId},{line}, {checkerReg} - {checkerName},{currentDate.ToString("HH:mm:ss", CultureInfo.InvariantCulture)},ENG"
+                Dim alarmMessage As String = $"{newAndonId},{line}, {checkerReg} - {checkerName},{currentDate.ToString("HH:mm:ss", CultureInfo.InvariantCulture)},{alarmType}"
                 alarmWriter.WriteLine(alarmMessage)
             End Using
         End SyncLock
     End Sub
 
-    Public Sub ReWriteAlarmContent(alarmPath As String, alarmContents As String(), andonId As String)
+    Public Sub ReWriteAlarmContent(alarmPath As String, alarmContents As String(), andonId As String, Optional isAccept As Boolean = False)
         If alarmContents IsNot Nothing Then
             SyncLock alarmLock
                 Using alarmWriter As New StreamWriter(alarmPath, False)
@@ -69,7 +75,11 @@ Public Class Andon
                         Dim alarmParts As String() = alarm.Split(",")
 
                         If alarmParts(0) = andonId Then
-                            alarmParts(4) = "ENGOK"
+                            If AcceptForm.LblType.Text = "Production" And isAccept = True Then
+                                alarmParts(4) = "PRODOK"
+                            ElseIf AcceptForm.LblType.Text = "Engineering" And isAccept = True Then
+                                alarmParts(4) = "ENGOK"
+                            End If
                         End If
 
                         alarmWriter.WriteLine(String.Join(",", alarmParts))
