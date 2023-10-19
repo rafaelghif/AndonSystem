@@ -39,6 +39,8 @@ Partial Class CloseForm
         Me.LblSupportList = New System.Windows.Forms.Label()
         Me.LblIssueDate = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.txtAction = New System.Windows.Forms.RichTextBox()
+        Me.LblAction = New System.Windows.Forms.Label()
         Me.TxtProblem = New System.Windows.Forms.RichTextBox()
         Me.LblProblem = New System.Windows.Forms.Label()
         Me.TxtIssueDate = New System.Windows.Forms.TextBox()
@@ -47,8 +49,6 @@ Partial Class CloseForm
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.CmbCategory = New System.Windows.Forms.ComboBox()
         Me.LblCategory = New System.Windows.Forms.Label()
-        Me.txtAction = New System.Windows.Forms.RichTextBox()
-        Me.LblAction = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -210,6 +210,25 @@ Partial Class CloseForm
         Me.GroupBox3.TabIndex = 15
         Me.GroupBox3.TabStop = False
         '
+        'txtAction
+        '
+        Me.txtAction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtAction.Location = New System.Drawing.Point(18, 284)
+        Me.txtAction.Multiline = False
+        Me.txtAction.Name = "txtAction"
+        Me.txtAction.Size = New System.Drawing.Size(264, 143)
+        Me.txtAction.TabIndex = 12
+        Me.txtAction.Text = ""
+        '
+        'LblAction
+        '
+        Me.LblAction.AutoSize = True
+        Me.LblAction.Location = New System.Drawing.Point(15, 264)
+        Me.LblAction.Name = "LblAction"
+        Me.LblAction.Size = New System.Drawing.Size(42, 17)
+        Me.LblAction.TabIndex = 11
+        Me.LblAction.Text = "Action"
+        '
         'TxtProblem
         '
         Me.TxtProblem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -288,24 +307,6 @@ Partial Class CloseForm
         Me.LblCategory.Size = New System.Drawing.Size(57, 17)
         Me.LblCategory.TabIndex = 3
         Me.LblCategory.Text = "Category"
-        '
-        'txtAction
-        '
-        Me.txtAction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtAction.Location = New System.Drawing.Point(18, 284)
-        Me.txtAction.Name = "txtAction"
-        Me.txtAction.Size = New System.Drawing.Size(264, 143)
-        Me.txtAction.TabIndex = 12
-        Me.txtAction.Text = ""
-        '
-        'LblAction
-        '
-        Me.LblAction.AutoSize = True
-        Me.LblAction.Location = New System.Drawing.Point(15, 264)
-        Me.LblAction.Name = "LblAction"
-        Me.LblAction.Size = New System.Drawing.Size(42, 17)
-        Me.LblAction.TabIndex = 11
-        Me.LblAction.Text = "Action"
         '
         'CloseForm
         '

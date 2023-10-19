@@ -64,7 +64,7 @@ Public Class LoginForm
     Private Function FindUserData(username As String) As String
         Dim users As String() = File.ReadAllLines(userPath)
         For Each user As String In users
-            If user.Contains(username) Then
+            If user.ToUpper.Contains(username.ToUpper) Then
                 Return user
             End If
         Next

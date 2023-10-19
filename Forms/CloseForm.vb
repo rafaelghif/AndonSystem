@@ -148,7 +148,7 @@ Public Class CloseForm
         Dim andonLogPaths As String() = logFileNames.Select(Function(logFileName) Path.Combine(andonLogPath, logFileName)).ToArray()
 
         Dim category As String = CmbCategory.SelectedItem
-        Dim picAction As String = txtAction.Text.Replace(vbCrLf, ". ").Replace(",", ".").Replace(vbCr, ". ").Replace("\r\n", ". ").Replace(Environment.NewLine, ". ")
+        Dim picAction As String = txtAction.Text.Replace(vbCrLf, ". ").Replace(",", ". ").Replace(vbCr, ". ").Replace("\r\n", ". ").Replace(Environment.NewLine, ". ")
 
         If String.IsNullOrEmpty(category) Then
             MsgBox("Please select category", MsgBoxStyle.Critical)

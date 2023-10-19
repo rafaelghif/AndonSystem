@@ -6,6 +6,7 @@ Public Class ArriveForm
 
     Private ReadOnly alarmPath = GetIniValue("SETUP", "alarmPath", localPath)
     Private ReadOnly andonLogPath = GetIniValue("SETUP", "andonLogPath", localPath)
+    Private ReadOnly checkerReg = GetIniValue("SETUP", "checkerReg", localPath)
 
     Private andon As New Andon()
     Private listDatabases As New List(Of String)
@@ -106,7 +107,7 @@ Public Class ArriveForm
 
         If databases IsNot Nothing Then
             For Each acceptList As String In databases
-                If acceptList.Contains("ACCEPT") Then
+                If acceptList.Contains("ACCEPT") AndAlso acceptList.Contains(checkerReg) Then
                     acceptLists.Add(acceptList)
                 End If
             Next
@@ -123,10 +124,11 @@ Public Class ArriveForm
                 Dim supportListParts As String() = supportList.Split(",")
 
                 Dim supportId As String = supportListParts(0)
+                Dim checkerRegData As String = supportListParts(2)
                 Dim supportType As String = supportListParts(7)
                 Dim supportStatus As String = supportListParts(8)
 
-                If supportStatus = "ACCEPT" AndAlso supportType = userType Then
+                If supportStatus = "ACCEPT" AndAlso supportType = userType AndAlso checkerRegData = checkerReg Then
                     supportLists.Add(supportId)
                 End If
             Next

@@ -45,6 +45,7 @@ Partial Class LoginForm
         '
         'TxtUsername
         '
+        Me.TxtUsername.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtUsername.Location = New System.Drawing.Point(15, 29)
         Me.TxtUsername.Name = "TxtUsername"
         Me.TxtUsername.Size = New System.Drawing.Size(212, 24)
@@ -52,6 +53,7 @@ Partial Class LoginForm
         '
         'TxtPassword
         '
+        Me.TxtPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtPassword.Location = New System.Drawing.Point(15, 81)
         Me.TxtPassword.Name = "TxtPassword"
         Me.TxtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)

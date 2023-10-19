@@ -29,9 +29,9 @@ Partial Class IssueForm
         Me.LblCheckerName = New System.Windows.Forms.Label()
         Me.LblProblem = New System.Windows.Forms.Label()
         Me.BtnEngSupport = New System.Windows.Forms.Button()
-        Me.TxtProblem = New System.Windows.Forms.RichTextBox()
         Me.BtnProductionSupport = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
+        Me.CmbProblem = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'LblCheckerRegistration
@@ -98,27 +98,17 @@ Partial Class IssueForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnEngSupport.Font = New System.Drawing.Font("Source Sans Pro", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnEngSupport.Location = New System.Drawing.Point(132, 268)
+        Me.BtnEngSupport.Location = New System.Drawing.Point(132, 212)
         Me.BtnEngSupport.Name = "BtnEngSupport"
-        Me.BtnEngSupport.Size = New System.Drawing.Size(153, 73)
+        Me.BtnEngSupport.Size = New System.Drawing.Size(153, 68)
         Me.BtnEngSupport.TabIndex = 2
         Me.BtnEngSupport.Text = "Engineering Support"
         Me.BtnEngSupport.UseVisualStyleBackColor = True
         '
-        'TxtProblem
-        '
-        Me.TxtProblem.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxtProblem.Font = New System.Drawing.Font("Source Sans Pro", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtProblem.Location = New System.Drawing.Point(12, 141)
-        Me.TxtProblem.Name = "TxtProblem"
-        Me.TxtProblem.Size = New System.Drawing.Size(273, 75)
-        Me.TxtProblem.TabIndex = 0
-        Me.TxtProblem.Text = ""
-        '
         'BtnProductionSupport
         '
         Me.BtnProductionSupport.Font = New System.Drawing.Font("Source Sans Pro", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnProductionSupport.Location = New System.Drawing.Point(132, 227)
+        Me.BtnProductionSupport.Location = New System.Drawing.Point(132, 171)
         Me.BtnProductionSupport.Name = "BtnProductionSupport"
         Me.BtnProductionSupport.Size = New System.Drawing.Size(153, 35)
         Me.BtnProductionSupport.TabIndex = 1
@@ -128,21 +118,30 @@ Partial Class IssueForm
         'BtnClose
         '
         Me.BtnClose.Font = New System.Drawing.Font("Source Sans Pro", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnClose.Location = New System.Drawing.Point(12, 227)
+        Me.BtnClose.Location = New System.Drawing.Point(12, 171)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(111, 113)
         Me.BtnClose.TabIndex = 3
         Me.BtnClose.Text = "END"
         Me.BtnClose.UseVisualStyleBackColor = True
         '
+        'CmbProblem
+        '
+        Me.CmbProblem.Font = New System.Drawing.Font("Source Sans Pro", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CmbProblem.FormattingEnabled = True
+        Me.CmbProblem.Location = New System.Drawing.Point(15, 140)
+        Me.CmbProblem.Name = "CmbProblem"
+        Me.CmbProblem.Size = New System.Drawing.Size(270, 25)
+        Me.CmbProblem.TabIndex = 100
+        '
         'IssueForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(297, 352)
+        Me.ClientSize = New System.Drawing.Size(297, 292)
+        Me.Controls.Add(Me.CmbProblem)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.BtnProductionSupport)
-        Me.Controls.Add(Me.TxtProblem)
         Me.Controls.Add(Me.BtnEngSupport)
         Me.Controls.Add(Me.LblProblem)
         Me.Controls.Add(Me.TxtCheckerName)
@@ -165,7 +164,7 @@ Partial Class IssueForm
     Friend WithEvents LblCheckerName As Label
     Friend WithEvents LblProblem As Label
     Friend WithEvents BtnEngSupport As Button
-    Friend WithEvents TxtProblem As RichTextBox
     Friend WithEvents BtnProductionSupport As Button
     Friend WithEvents BtnClose As Button
+    Friend WithEvents CmbProblem As ComboBox
 End Class

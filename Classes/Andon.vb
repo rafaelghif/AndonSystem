@@ -98,7 +98,12 @@ Public Class Andon
             For Each andonLogContent In andonLogContents
                 Dim anDonData As String() = andonLogContent.Split(",")
                 If andonId = anDonData(0) Then
+
                     If anDonData.Length = 19 Then
+                        If anDonData(3) = "OTDR" Then
+                            isValid = True
+                            Exit For
+                        End If
                         isValid = currentMac = anDonData(18)
                         Exit For
                     End If

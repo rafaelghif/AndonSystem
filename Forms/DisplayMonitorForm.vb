@@ -76,7 +76,11 @@ Public Class DisplayMonitorForm
 
         Dim combinedDatabases As String() = CombineLogData(currentMonthDatabase, oneMonthAgoDatabase)
 
-        Array.Reverse(combinedDatabases)
+        Try
+            Array.Reverse(combinedDatabases)
+        Catch ex As Exception
+
+        End Try
 
         listDatabases = GetAndonList(combinedDatabases)
         GenerateAndonList()
@@ -107,7 +111,7 @@ Public Class DisplayMonitorForm
             Dim andonList As New List(Of String)
 
             Dim line As String = andonParts(3)
-            Dim checkerName As String = andonParts(2)
+            Dim checkerName As String = andonParts(5)
             Dim problem As String = andonParts(6)
             Dim status As String = andonParts(8)
             Dim issueDate As String = andonParts(11).Split(" ")(1)
