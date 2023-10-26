@@ -21,6 +21,10 @@ Public Class IssueForm
     End Sub
 
     Private Sub LoadProblem()
+
+        CmbProblem.DataSource = Nothing
+        CmbProblem.Items.Clear()
+
         Dim userPath As String = GetIniValue("SETUP", "userPath", localPath)
         Dim userPathArr As String() = userPath.Split("\")
         Dim ipServer As String = userPathArr.ElementAtOrDefault(2)

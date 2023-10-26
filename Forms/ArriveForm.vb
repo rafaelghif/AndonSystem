@@ -124,7 +124,7 @@ Public Class ArriveForm
                 Dim supportListParts As String() = supportList.Split(",")
 
                 Dim supportId As String = supportListParts(0)
-                Dim checkerRegData As String = supportListParts(2)
+                Dim checkerRegData As String = supportListParts(4)
                 Dim supportType As String = supportListParts(7)
                 Dim supportStatus As String = supportListParts(8)
 
