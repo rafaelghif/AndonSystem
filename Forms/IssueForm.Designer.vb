@@ -127,6 +127,7 @@ Partial Class IssueForm
         '
         'CmbProblem
         '
+        Me.CmbProblem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbProblem.Font = New System.Drawing.Font("Source Sans Pro", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CmbProblem.FormattingEnabled = True
         Me.CmbProblem.Location = New System.Drawing.Point(15, 140)

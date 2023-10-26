@@ -42,7 +42,11 @@ Public Class DisplayForm
 
     Private Function LoadData(filePath As String) As String()
         If File.Exists(filePath) Then
-            Return File.ReadAllLines(filePath)
+            Try
+                Return File.ReadAllLines(filePath)
+            Catch ex As Exception
+                Return Nothing
+            End Try
         Else
             Return Nothing
         End If

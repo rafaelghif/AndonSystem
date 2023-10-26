@@ -5,6 +5,7 @@ Public Class IssueForm
     Private ReadOnly localPath = "C:\ANDON\localSetup.ini"
     Private ReadOnly checkerReg = GetIniValue("SETUP", "checkerReg", localPath)
     Private ReadOnly checkerName = GetIniValue("SETUP", "checkerName", localPath)
+
     Private Sub IssueForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Initialization()
     End Sub
@@ -22,27 +23,24 @@ Public Class IssueForm
     Private Sub LoadProblem()
         Dim userPath As String = GetIniValue("SETUP", "userPath", localPath)
         Dim userPathArr As String() = userPath.Split("\")
-        Dim ipServer As String = userPathArr(2)
+        Dim ipServer As String = userPathArr.ElementAtOrDefault(2)
 
-        Dim problemPath As String = $"\\{ipServer}\f\ANDON SYSTEM 3\CONFIG\problem.csv"
+        Dim problemPath As String = $"\\{ipServer}\f\ANDON SYSTEM 3\CONFIG\problem.txt"
 
-        If File.Exists(problemPath) Then
-            Try
-                Dim problems As String() = File.ReadAllLines(problemPath)
-                Dim filteredProblems As New List(Of String)()
-
-                For Each line As String In problems
-                    If line.Contains(checkerReg) Then
-                        Dim fields As String() = line.Split(",")
-                        CmbProblem.Items.Add(fields(1))
-                    End If
-                Next
-            Catch ex As Exception
-                MsgBox("Error when reading problem" + ex.ToString)
-            End Try
-        Else
+        If Not File.Exists(problemPath) Then
             MsgBox("Problem path not exists, please contact engineering!")
+            Exit Sub
         End If
+
+        Try
+            Dim problems As String() = File.ReadAllLines(problemPath)
+
+            For Each line As String In problems
+                CmbProblem.Items.Add(line)
+            Next
+        Catch ex As Exception
+            MsgBox("Error when reading problem" & ex.ToString())
+        End Try
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
